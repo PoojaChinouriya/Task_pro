@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+    {% block title %}
+  <title>Document</title>
+  {% endblock %}
+</head>
+<body>
+  {% block content%}
+    <table class="table table-success w-75 table-striped  mx-auto">
+        <thead class="table table-dark">
+          <tr>
+              <th>Task_Name</th>
+              <th>Task_Description</th>
+              <th>Task_Status</th>
+              <th>Task_Deadline</th>
+              <th>Task_created_date</th>
+              <th>Task_completed_date</th>
+              <th>Actions</th>
+          </tr>
+        </thead>
+      <tbody >
+          {% for td in tasks %}
+          <tr>
+            <td>{{td.task_name}}</td>
+            <td>{{td.task_description}}</td>
+            <td>{{td.task_status}}</td>
+            <td>{{td.task_deadline}}</td>
+            <td>{{td.task_created_date}}</td>
+            <td>{{td.task_completed}}</td>
+            <td>
+              {% if td.task_status != 'Completed' %}
+                <a href="{% url 'update_task' td.pk %}" class="btn btn-outline-warning">Update</a>
+              {% endif %}
+              <a href="{% url 'delete_task' td.pk %}" class="btn btn-outline-danger">Delete</a>
+            </td>
+          </tr>
+        {%endfor%}
+      </tbody>
+
+    </table>
+  {% endblock %}
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+    {% block title %}
+  <title>Document</title>
+    {% endblock %}
+</head>
+<body>
+    {% block content%}
+      <form method = 'post'>
+        {% csrf_token %}
+      <h3>Do you really want to delete this data
+        <span style="color-red">'{{task.pk}} {{task.task_name}}'</span>
+      </h3>
+      <button type='submit' class="btn btn-outline-dark col-3">YES</button>
+      <a href="{% url 'list' %}"class="btn btn-outline-success col-3">NO</a>
+      </form>
+    {% endblock %}
+</body>
+</html>
